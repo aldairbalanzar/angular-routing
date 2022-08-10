@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DepartmentDetailsComponent } from './department-details/department-details.component';
 import { DepartmentListComponent } from './department-list/department-list.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { HomeComponent } from './home/home.component';
@@ -9,6 +10,7 @@ const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   { path: "home", component: HomeComponent },
   { path: "departments", component: DepartmentListComponent },
+  { path: "departments/:id", component: DepartmentDetailsComponent },
   { path: "employees", component: EmployeeListComponent },
   { path: "**", component: PageNotFoundComponent }
 ];
@@ -21,6 +23,7 @@ export class AppRoutingModule { }
 export const routingComponents = [ 
   HomeComponent,
   DepartmentListComponent,
+  DepartmentDetailsComponent,
   EmployeeListComponent,
   PageNotFoundComponent
 ];

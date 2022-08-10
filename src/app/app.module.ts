@@ -4,14 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
-import { HomeComponent } from './home/home.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { DepartmentDetailsComponent } from './department-details/department-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
     NavComponent,
+    DepartmentDetailsComponent,
     // HomeComponent,
     // PageNotFoundComponent,
   ],
