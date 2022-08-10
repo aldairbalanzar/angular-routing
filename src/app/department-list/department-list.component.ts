@@ -20,7 +20,6 @@ export class DepartmentListComponent implements OnInit {
   }
 
   handleDepartmentRoute(departmentId: number): void {
-    console.log("handleDepartmentRoute: ", departmentId);
     this.router.navigate(["/departments", departmentId]);
   }
 
