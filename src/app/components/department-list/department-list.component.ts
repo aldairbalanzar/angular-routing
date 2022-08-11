@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { DepartmentsService } from 'src/app/services/departments.service';
 
 @Component({
   selector: 'app-department-list',
@@ -7,20 +7,16 @@ import { Router } from '@angular/router';
   styles: []
 })
 export class DepartmentListComponent implements OnInit {
-  departments = [
-    {id: 1, name: "Angular"},
-    {id: 2, name: "React"},
-    {id: 3, name: "Svelte"},
-    {id: 4, name: "Vue"},
-  ]
-
-  constructor(private router: Router) { }
+  departments: {}[];
+  constructor(
+    private departsmentService: DepartmentsService,
+    ) { }
 
   ngOnInit(): void {
+    this.departments = this.departsmentService.getDepartments();
   }
 
   handleDepartmentRoute(departmentId: number): void {
-    this.router.navigate(["/departments", departmentId]);
+    this.departsmentService.setDepartmentRoute(departmentId)
   }
-
 }
