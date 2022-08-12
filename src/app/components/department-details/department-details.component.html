@@ -1,0 +1,13 @@
+<div class="department-details-container">
+    <h3 class="department-title">{{ departmentData.name || "" }}</h3>
+    <p class="details">You selected department with id: {{ departmentId }}</p>
+
+    <div class="department-details-btn-container">
+        <button class="btn"
+        (click)="handlePrevDepartment()"
+        >Prev</button>
+        <button class="btn"
+        (click)="handleNextDepartment()"
+        >Next</button>
+    </div>
+</div>

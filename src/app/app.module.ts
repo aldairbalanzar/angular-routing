@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavComponent } from './nav/nav.component';
-import { DepartmentDetailsComponent } from './department-details/department-details.component';
+import { NavComponent } from './components/nav/nav.component';
+import { DepartmentDetailsComponent } from './components/department-details/department-details.component';
 
 @NgModule({
   declarations: [
