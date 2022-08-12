@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Department } from 'src/app/models/department';
 import { DepartmentsService } from 'src/app/services/departments.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { DepartmentsService } from 'src/app/services/departments.service';
   styles: []
 })
 export class DepartmentListComponent implements OnInit {
-  departments: {}[];
+  departments: Department[];
   constructor(
     private departsmentService: DepartmentsService,
     ) { }
@@ -18,5 +19,6 @@ export class DepartmentListComponent implements OnInit {
 
   handleDepartmentRoute(departmentId: number): void {
     this.departsmentService.setDepartmentRoute(departmentId)
+    this.departsmentService.setCurrentDepartmentData(departmentId)
   }
 }
