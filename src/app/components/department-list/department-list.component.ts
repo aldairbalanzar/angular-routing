@@ -19,6 +19,6 @@ export class DepartmentListComponent implements OnInit {
 
   handleDepartmentRoute(departmentId: number): void {
     this.departsmentService.setDepartmentRoute(departmentId)
-    this.departsmentService.setCurrentDepartmentData(departmentId)
+    this.departsmentService.setCurrentDepartmentData()
   }
 }

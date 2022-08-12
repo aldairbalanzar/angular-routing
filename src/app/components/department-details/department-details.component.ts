@@ -36,7 +36,7 @@ export class DepartmentDetailsComponent implements OnInit {
     }
 
     this.departmentsService.setDepartmentRoute(newId);
-    this.departmentsService.setCurrentDepartmentData(newId)
+    this.departmentsService.setCurrentDepartmentData()
   }
 
   handleNextDepartment(): void {
@@ -46,8 +46,6 @@ export class DepartmentDetailsComponent implements OnInit {
     }
 
     this.departmentsService.setDepartmentRoute(newId);
-    this.departmentsService.setCurrentDepartmentData(newId)
-
-    
+    this.departmentsService.setCurrentDepartmentData()
   }
 }

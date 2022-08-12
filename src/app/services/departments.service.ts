@@ -28,23 +28,25 @@ export class DepartmentsService {
     return this.departments;
   }
   
+  getAmountOfDepartments(): number {
+    return this.departments.length;
+  }
+  
   getDepartmentDataById(departmentId: number): Department {
     return this.departments.find(dept => dept.id === departmentId);
   } 
 
-  getAmountOfDepartments(): number {
-    return this.departments.length;
-  }
-
-  setDepartmentRoute(departmentId: number): void {
-    this.router.navigate(["/departments", departmentId]);
-  }
-
+  
   setCurrentDepartmentId(departmentId: number): void {
     this.currentDepartmentId = departmentId
   }
 
-  setCurrentDepartmentData(departmentId: number): void {
-    this.departmentDataSource.next(this.getDepartmentDataById(departmentId))
+  setDepartmentRoute(departmentId: number): void {
+    this.setCurrentDepartmentId(departmentId);
+    this.router.navigate(["/departments", this.currentDepartmentId]);
+  }
+
+  setCurrentDepartmentData(): void {
+    this.departmentDataSource.next(this.getDepartmentDataById(this.currentDepartmentId))
   }
 }
