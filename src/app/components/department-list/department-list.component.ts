@@ -10,15 +10,23 @@ import { DepartmentsService } from 'src/app/services/departments.service';
 export class DepartmentListComponent implements OnInit {
   departments: Department[];
   constructor(
-    private departsmentService: DepartmentsService,
+    private departmentService: DepartmentsService,
     ) { }
 
   ngOnInit(): void {
-    this.departments = this.departsmentService.getDepartments();
+    this.departments = this.departmentService.getDepartments();
   }
 
   handleDepartmentRoute(departmentId: number): void {
-    this.departsmentService.setDepartmentRoute(departmentId)
-    this.departsmentService.setCurrentDepartmentData()
+    this.departmentService.setDepartmentRoute(departmentId)
+    this.departmentService.setCurrentDepartmentData()
+  }
+
+  compareDepartmentsById(departmentId: number): boolean {
+    if(this.departmentService.getCurrentDepartmentId() === departmentId) {
+      return true;
+    }
+
+    return false;
   }
 }
