@@ -36,9 +36,16 @@ export class DepartmentsService {
     return this.departments.find(dept => dept.id === departmentId);
   } 
 
+  getCurrentDepartmentId(): number {
+    return this.currentDepartmentId;
+  }
   
   setCurrentDepartmentId(departmentId: number): void {
     this.currentDepartmentId = departmentId
+  }
+  
+  setCurrentDepartmentData(): void {
+    this.departmentDataSource.next(this.getDepartmentDataById(this.currentDepartmentId))
   }
 
   setDepartmentRoute(departmentId: number): void {
@@ -46,7 +53,8 @@ export class DepartmentsService {
     this.router.navigate(["/departments", this.currentDepartmentId]);
   }
 
-  setCurrentDepartmentData(): void {
-    this.departmentDataSource.next(this.getDepartmentDataById(this.currentDepartmentId))
+  goBackToDepartments(): void {
+    this.router.navigate(["/departments", { id: this.currentDepartmentId }])
   }
+
 }

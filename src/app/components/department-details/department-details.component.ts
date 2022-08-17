@@ -48,4 +48,8 @@ export class DepartmentDetailsComponent implements OnInit {
     this.departmentsService.setDepartmentRoute(newId);
     this.departmentsService.setCurrentDepartmentData()
   }
+
+  handleBackClick(): void {
+    this.departmentsService.goBackToDepartments();
+  }
 }
