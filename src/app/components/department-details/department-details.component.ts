@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Route, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Department } from 'src/app/models/department';
 import { DepartmentsService } from 'src/app/services/departments.service';
 
@@ -10,11 +10,12 @@ import { DepartmentsService } from 'src/app/services/departments.service';
   ]
 })
 export class DepartmentDetailsComponent implements OnInit {
-  departmentId: number;
+  currentDepartmentId: number;
   departmentData: Department;
   constructor(
     private departmentsService: DepartmentsService,
     private route: ActivatedRoute,
+    private router: Router, 
   ) { }
 
   ngOnInit(): void {
@@ -22,34 +23,35 @@ export class DepartmentDetailsComponent implements OnInit {
     //this.currentDepartmentId = parseInt(this.route.snapshot.paramMap.get("id"));
 
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.departmentId = parseInt(params.get("id"));
+      let departmentId = parseInt(params.get("id"))
+      this.currentDepartmentId = departmentId;
+      this.departmentsService.setCurrentDepartmentData(departmentId)
     });
 
     this.departmentsService.currentDepartmentData.subscribe(dept => this.departmentData = dept);
-    console.log(this.departmentData);
   }
 
   handlePrevDepartment() {
-    let newId: number = this.departmentId - 1;
-    if(newId < 1) {
-      newId = this.departmentsService.getAmountOfDepartments()
+    this.currentDepartmentId = this.currentDepartmentId - 1;
+    if(this.currentDepartmentId < 1) {
+      this.currentDepartmentId = this.departmentsService.getAmountOfDepartments()
     }
 
-    this.departmentsService.setDepartmentRoute(newId);
-    this.departmentsService.setCurrentDepartmentData()
+    this.departmentsService.setCurrentDepartmentData(this.currentDepartmentId)
+    this.router.navigate(["../departments", this.currentDepartmentId]);
   }
 
   handleNextDepartment(): void {
-    let newId: number = this.departmentId + 1;
-    if(newId > this.departmentsService.getAmountOfDepartments()) {
-      newId = 1
+    this.currentDepartmentId = this.currentDepartmentId + 1;
+    if(this.currentDepartmentId > this.departmentsService.getAmountOfDepartments()) {
+      this.currentDepartmentId = 1
     }
 
-    this.departmentsService.setDepartmentRoute(newId);
-    this.departmentsService.setCurrentDepartmentData()
+    this.departmentsService.setCurrentDepartmentData(this.currentDepartmentId);
+    this.router.navigate(["../departments", this.currentDepartmentId]);
   }
 
   handleBackClick(): void {
-    this.departmentsService.goBackToDepartments();
+    this.router.navigate(["../", { id: this.currentDepartmentId }], {relativeTo: this.route});
   }
 }

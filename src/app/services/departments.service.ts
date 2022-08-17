@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Department } from '../models/department';
 
@@ -7,7 +7,6 @@ import { Department } from '../models/department';
   providedIn: 'root'
 })
 export class DepartmentsService {
-  private currentDepartmentId: number;
   private departmentDataSource = new BehaviorSubject<Department | null>(null);
   currentDepartmentData = this.departmentDataSource.asObservable();
 
@@ -20,9 +19,8 @@ export class DepartmentsService {
 
   
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    ) { }
+    route: ActivatedRoute,
+  ) {}
     
   getDepartments(): Department[] {
     return this.departments;
@@ -35,26 +33,8 @@ export class DepartmentsService {
   getDepartmentDataById(departmentId: number): Department {
     return this.departments.find(dept => dept.id === departmentId);
   } 
-
-  getCurrentDepartmentId(): number {
-    return this.currentDepartmentId;
-  }
   
-  setCurrentDepartmentId(departmentId: number): void {
-    this.currentDepartmentId = departmentId
+  setCurrentDepartmentData(departmentId: number): void {
+    this.departmentDataSource.next(this.getDepartmentDataById(departmentId));
   }
-  
-  setCurrentDepartmentData(): void {
-    this.departmentDataSource.next(this.getDepartmentDataById(this.currentDepartmentId))
-  }
-
-  setDepartmentRoute(departmentId: number): void {
-    this.setCurrentDepartmentId(departmentId);
-    this.router.navigate(["/departments", this.currentDepartmentId]);
-  }
-
-  goBackToDepartments(): void {
-    this.router.navigate(["/departments", { id: this.currentDepartmentId }])
-  }
-
 }

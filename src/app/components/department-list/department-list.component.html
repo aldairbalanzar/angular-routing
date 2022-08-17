@@ -2,7 +2,7 @@
     <li *ngFor="let dept of departments" 
     class="department item"
     [class.selected]="compareDepartmentsById(dept.id)"
-    (click)="handleDepartmentRoute(dept.id)">
+    (click)="handleSelectedDepartment(dept.id)">
             <span class="badge">{{ dept.id }}. </span>{{ dept.name }}
     </li>
 </ul>

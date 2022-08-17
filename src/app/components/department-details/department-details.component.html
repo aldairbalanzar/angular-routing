@@ -1,14 +1,24 @@
 <div class="department-details-container">
-    <h3 class="department-title">{{ departmentData.name || "" }}</h3>
-    <p class="details">You selected department with id: {{ departmentId }}</p>
+    
+    <div *ngIf="departmentData; else noDepartment" 
+    class="department-details">
+        <h3 class="department-title">{{ departmentData.name || "" }}</h3>
+        <p class="details">You selected department with id: {{ currentDepartmentId }}</p>
+    </div>
+
+    <ng-template #noDepartment>
+        no department selected...
+    </ng-template>
 
     <div class="department-details-btn-container">
         <button class="btn"
-        (click)="handlePrevDepartment()"
-        >Prev</button>
+        (click)="handlePrevDepartment()">
+        Prev
+        </button>
         <button class="btn"
-        (click)="handleNextDepartment()"
-        >Next</button>
+        (click)="handleNextDepartment()">
+        Next
+        </button>
     </div>
 
     <div class="back-btn-container">
