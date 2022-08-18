@@ -5,8 +5,8 @@ import { DepartmentListComponent } from './components/department-list/department
 import { EmployeeListComponent } from './components/employee-list/employee-list.component';
 import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { DepartmentContactComponent } from './department-contact/department-contact.component';
-import { DepartmentOverviewComponent } from './department-overview/department-overview.component';
+import { DepartmentContactComponent } from './components/department-contact/department-contact.component';
+import { DepartmentOverviewComponent } from './components/department-overview/department-overview.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
