@@ -25,7 +25,7 @@ export class DepartmentListComponent implements OnInit {
     });
   }
 
-  handleSelectedDepartment(departmentId: number): void {
+  goSelectedDepartment(departmentId: number): void {
     this.departmentService.setCurrentDepartmentData(departmentId)
     this.router.navigate([departmentId], {relativeTo: this.route});
   }

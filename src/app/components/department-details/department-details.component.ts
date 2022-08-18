@@ -31,17 +31,17 @@ export class DepartmentDetailsComponent implements OnInit {
     this.departmentsService.currentDepartmentData.subscribe(dept => this.departmentData = dept);
   }
 
-  handlePrevDepartment() {
+  goPrevDepartment() {
     this.currentDepartmentId = this.currentDepartmentId - 1;
     if(this.currentDepartmentId < 1) {
-      this.currentDepartmentId = this.departmentsService.getAmountOfDepartments()
+      this.currentDepartmentId = this.departmentsService.getAmountOfDepartments();
     }
 
     this.departmentsService.setCurrentDepartmentData(this.currentDepartmentId)
     this.router.navigate(["../departments", this.currentDepartmentId]);
   }
 
-  handleNextDepartment(): void {
+  goNextDepartment(): void {
     this.currentDepartmentId = this.currentDepartmentId + 1;
     if(this.currentDepartmentId > this.departmentsService.getAmountOfDepartments()) {
       this.currentDepartmentId = 1
@@ -51,7 +51,12 @@ export class DepartmentDetailsComponent implements OnInit {
     this.router.navigate(["../departments", this.currentDepartmentId]);
   }
 
-  handleBackClick(): void {
+  goBackClick(): void {
     this.router.navigate(["../", { id: this.currentDepartmentId }], {relativeTo: this.route});
   }
+
+  goDepartmentChildRoute(route: string): void {
+    this.router.navigate([`${route}`], { relativeTo: this.route });
+  }
+  
 }

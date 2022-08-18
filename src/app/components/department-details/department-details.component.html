@@ -10,13 +10,26 @@
         no department selected...
     </ng-template>
 
+    <div class="child-route-btn-container">
+        <button class="btn"
+        (click)="goDepartmentChildRoute('overview')">
+        Overview
+        </button>
+        <button class="btn"
+        (click)="goDepartmentChildRoute('contact')">
+        Contact
+        </button>
+    </div>
+    
+    <router-outlet></router-outlet>
+
     <div class="department-details-btn-container">
         <button class="btn"
-        (click)="handlePrevDepartment()">
+        (click)="goPrevDepartment()">
         Prev
         </button>
         <button class="btn"
-        (click)="handleNextDepartment()">
+        (click)="goNextDepartment()">
         Next
         </button>
     </div>
@@ -24,7 +37,7 @@
     <div class="back-btn-container">
         <button 
         class="btn"
-        (click)="handleBackClick()">
+        (click)="goBackClick()">
             Back
         </button>
     </div>
